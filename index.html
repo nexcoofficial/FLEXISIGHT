@@ -3,841 +3,1198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlexiSight Pro - Kacamata Autofokus Premium Indonesia</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>FlexiSight Pro | Kacamata Autofokus Premium</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap');
+        :root {
+            --primary: #2c3e50;
+            --secondary: #e74c3c;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #34495e;
+            --success: #27ae60;
+            --discount: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
         }
         
-        .montserrat {
-            font-family: 'Montserrat', sans-serif;
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        .bg-gradient-premium {
-            background: linear-gradient(135deg, #0c4a6e 0%, #1e293b 100%);
+        /* Header Styles */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .hero-image {
-            animation: float 6s ease-in-out infinite;
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
         
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
+        .brand {
+            font-weight: 800;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
         }
         
-        .shine-effect {
+        .brand span {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding-top: 70px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .shine-effect:after {
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        
+        .hero-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            line-height: 1.3;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text);
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: auto;
+            margin: 1rem 0;
+            border-radius: 10px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .hero-image:hover {
+            transform: scale(1.02);
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 2rem 0;
+        }
+        
+        .gallery-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .gallery-img:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #bbb;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 4rem 1rem;
+            background-color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        .section-title:after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(255, 255, 255, 0.13);
-            background: linear-gradient(
-                to right, 
-                rgba(255, 255, 255, 0) 0%,
-                rgba(255, 255, 255, 0.03) 77%,
-                rgba(255, 255, 255, 0.6) 92%,
-                rgba(255, 255, 255, 0) 100%
-            );
-            transform: rotate(30deg);
-            animation: shine 8s infinite ease-in-out;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
         }
         
-        @keyframes shine {
-            0% { left: -50%; }
-            70% { left: -50%; }
-            100% { left: 150%; }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
         }
         
-        .pulse {
-            animation: pulse 2s infinite;
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            transition: all 0.3s ease;
         }
         
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.7); }
-            70% { box-shadow: 0 0 0 15px rgba(79, 70, 229, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(79, 70, 229, 0); }
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
-    </style>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        premium: {
-                            blue: '#0c4a6e',
-                            dark: '#1e293b',
-                            accent: '#c026d3',
-                            highlight: '#3b82f6'
-                        }
-                    }
-                }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-desc {
+            color: var(--text);
+            font-size: 0.95rem;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-right: 1rem;
+            padding-top: 0.5rem;
+        }
+        
+        .benefit-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .benefit-content p {
+            font-size: 0.95rem;
+            color: var(--text);
+        }
+        
+        /* Testimonial Section */
+        .testimonials {
+            padding: 4rem 1rem;
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: var(--light);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        .testimonial-card:before {
+            content: '\201C';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 5rem;
+            color: rgba(0,0,0,0.1);
+            font-family: Georgia, serif;
+            line-height: 0;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            object-fit: cover;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .author-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .author-location {
+            font-size: 0.85rem;
+            color: var(--text);
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 4rem 1rem;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+        }
+        
+        .price-table {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .price-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .price-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--accent);
+        }
+        
+        .popular-tag {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: var(--accent);
+            color: white;
+            padding: 5px 30px;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .price-header {
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+        
+        .price-amount {
+            margin: 1rem 0;
+            position: relative;
+        }
+        
+        .price-normal {
+            font-size: 1rem;
+            color: var(--text);
+            text-decoration: line-through;
+            color: var(--discount);
+        }
+        
+        .price-current {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+        
+        .price-current::before {
+            content: 'Rp';
+            font-size: 1rem;
+            position: relative;
+            top: -10px;
+        }
+        
+        .price-desc {
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-features {
+            list-style: none;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+        
+        .price-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-features i {
+            color: var(--success);
+            margin-right: 0.5rem;
+        }
+        
+        /* CTA Section */
+        .cta {
+            padding: 4rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .countdown {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .countdown-item {
+            background-color: white;
+            color: var(--dark);
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .countdown-label {
+            font-size: 0.7rem;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+        
+        .stock-counter {
+            background-color: var(--light);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            font-weight: 600;
+            margin: 1rem 0;
+            display: inline-block;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            background-color: #e67e22;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 4rem 1rem;
+            background-color: white;
+        }
+        
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background-color: var(--light);
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #e3e8eb;
+        }
+        
+        .faq-question i {
+            transform: rotate(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question.active i {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background-color: white;
+        }
+        
+        .faq-answer-content {
+            padding: 1.5rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+        
+        .social-icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.1);
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        /* Sticky CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: white;
+            padding: 10px 20px;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+        }
+        
+        .sticky-price {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sticky-normal {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            color: var(--discount);
+        }
+        
+        .sticky-current {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+        
+        .sticky-button {
+            padding: 10px 20px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .sticky-button:hover {
+            background-color: #e67e22;
+        }
+        
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
-    </script>
+        
+        .animate {
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .testimonial-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-table {
+                grid-template-columns: 1fr;
+            }
+            
+            .price-card.popular {
+                transform: scale(1);
+                margin: 1rem 0;
+            }
+        }
+    </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-    <!-- Sticky Banner -->
-    <div class="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-premium-blue to-premium-dark text-white z-50 shadow-xl">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
-            <div class="flex items-center">
-                <div class="text-center">
-                    <div class="text-sm line-through opacity-75">Rp 210.000</div>
-                    <div class="text-xl font-bold">Rp 140.000</div>
-                </div>
-                <div class="ml-6 hidden md:block">
-                    <span class="bg-yellow-400 text-premium-dark font-bold px-2 py-1 rounded-md text-sm">DISKON AKHIR TAHUN</span>
-                </div>
-            </div>
-            <div class="flex-1 text-center min-w-[180px]">
-                <p class="text-sm mb-1">PROMO BUNDLING!</p>
-                <p class="text-lg font-bold">1 Set Rp144.000 • 2 Set Rp190.000</p>
-            </div>
-            <a href="https://mila.orderonline.id/flexisight-pro" class="bg-premium-accent hover:bg-purple-700 px-6 py-3 rounded-md font-bold text-white transition-all transform hover:scale-105 pulse">
-                BELI SEKARANG <i class="ml-2 fas fa-arrow-right"></i>
-            </a>
-        </div>
-    </div>
-    
+<body>
     <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0">
-                    <h1 class="text-premium-blue font-bold text-xl montserrat">FLEXISIGHT <span class="text-premium-accent">PRO</span></h1>
-                </div>
-                <nav class="hidden md:flex space-x-10">
-                    <a href="#features" class="font-medium hover:text-premium-accent">Fitur</a>
-                    <a href="#benefits" class="font-medium hover:text-premium-accent">Keunggulan</a>
-                    <a href="#pricing" class="font-medium hover:text-premium-accent">Paket Harga</a>
-                    <a href="#testimonials" class="font-medium hover:text-premium-accent">Testimoni</a>
-                </nav>
-                <a href="https://mila.orderonline.id/flexisight-pro" class="bg-premium-accent hover:bg-purple-700 px-4 py-2 rounded-md text-white font-medium">
-                    Pesan Sekarang
-                </a>
-            </div>
+    <header>
+        <div class="container header-container">
+            <div class="brand">Flexi<span>Sight</span> Pro</div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="relative bg-gradient-premium text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-5">
-            <div class="absolute top-20 -left-20 w-96 h-96 bg-premium-accent rounded-full mix-blend-soft-light filter blur-3xl opacity-70"></div>
-            <div class="absolute top-80 right-0 w-96 h-96 bg-premium-highlight rounded-full mix-blend-soft-light filter blur-3xl opacity-50"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 py-16 md:py-24 relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="space-y-6">
-                    <span class="px-4 py-1 bg-white/20 backdrop-blur text-sm rounded-full">Terlaris di Indonesia</span>
-                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold montserrat leading-tight">
-                        Kacamata Autofokus <span class="text-premium-highlight">Terbaik</span> Untuk Mata Anda
-                    </h1>
-                    <p class="text-lg text-white/90 max-w-2xl">
-                        FlexiSight Pro - Solusi revolusioner untuk membaca dan melihat jarak dekat maupun jauh. Kacamata pintar yang secara otomatis menyesuaikan fokus sesuai kebutuhan pengguna Anda.
-                    </p>
-                    
-                    <div class="mt-8">
-                        <a href="https://mila.orderonline.id/flexisight-pro" class="shine-effect inline-block bg-premium-accent hover:bg-purple-700 px-8 py-4 rounded-lg font-bold text-lg text-white transition-all transform hover:scale-105">
-                            DAPATKAN PENAWARAN HARI INI <i class="ml-2 fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                    
-                    <div class="mt-6 bg-white/10 backdrop-blur p-4 rounded-xl inline-block">
-                        <div class="flex items-center space-x-4">
-                            <div class="flex items-center">
-                                <i class="fas fa-shipping-fast text-premium-highlight text-2xl"></i>
-                                <div class="ml-2">
-                                    <div class="font-bold">GRATIS ONGKIR</div>
-                                    <div class="text-sm">Seluruh Indonesia</div>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-credit-card text-premium-highlight text-2xl"></i>
-                                <div class="ml-2">
-                                    <div class="font-bold">GARANSI</div>
-                                    <div class="text-sm">100% Uang Kembali</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content animate">
+                <h1 class="hero-title">Kacamata Autofokus Premium untuk Penglihatan Sempurna</h1>
+                <p class="hero-subtitle">Nikmati kemudahan melihat jarak dekat, menengah, dan jauh hanya dengan satu kacamata FlexiSight Pro</p>
+                <img src="https://cdn.hotishop.com/image/1092e09fa8a07b9cc6fa38b5606b23150e07fe68.jpeg" alt="FlexiSight Pro Premium Glasses" class="hero-image">
+                
+                <div class="image-gallery">
+                    <img src="https://cdn.hotishop.com/image/4d18d0367b793034b1fc5af7d920558b6baf51e8.jpeg" alt="FlexiSight Pro Features" class="gallery-img">
+                    <img src="https://cdn.hotishop.com/image/2b7f939bdb2429753dafeb1a850b9a3a78f8dcd3.jpeg" alt="FlexiSight Pro Usage" class="gallery-img">
+                    <img src="https://cdn.hotishop.com/image/d37d645986e795c188a19075ba938de042118f8a.jpeg" alt="FlexiSight Pro Design" class="gallery-img">
+                    <img src="https://cdn.hotishop.com/image/b1db9c7d6da61d240af825e37b3089aabd1e3fcb.jpeg" alt="FlexiSight Pro Benefits" class="gallery-img">
+                    <img src="https://cdn.hotishop.com/image/6807aa8c4058e77fd4bfb5baf5dc194a79fdf4f5.jpeg" alt="FlexiSight Pro in Use" class="gallery-img">
+                    <img src="https://cdn.hotishop.com/image/7731603e5fc9d8844bd0ba2b814013582aa1d3d7.png" alt="FlexiSight Pro Technology" class="gallery-img">
                 </div>
                 
-                <div class="relative flex justify-center">
-                    <div class="w-[300px] h-[300px] md:w-[380px] md:h-[380px] relative hero-image">
-                        <div class="absolute inset-0 bg-premium-highlight/20 rounded-full blur-2xl -z-10"></div>
-                        <img src="https://cdn.hotishop.com/image/1092e09fa8a07b9cc6fa38b5606b23150e07fe68.jpeg" alt="FlexiSight Pro" class="w-full h-full object-contain rounded-xl z-10 shadow-xl">
-                    </div>
-                </div>
+                <a href="#pricing" class="cta-button">Pesan Sekarang</a>
             </div>
         </div>
     </section>
-    
+
+    <!-- Modal for Image Gallery -->
+    <div id="imageModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="expandedImg">
+    </div>
+
     <!-- Features Section -->
-    <section id="features" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold montserrat text-premium-blue">Teknologi <span class="text-premium-accent">Revolusioner</span> Dalam Kacamata</h2>
-                <p class="mt-4 text-gray-600">Dengan teknologi fotokromik dan autofokus yang canggih, FlexiSight Pro menawarkan pengalaman penglihatan yang belum pernah ada sebelumnya</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Feature 1 -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-xl bg-premium-blue flex items-center justify-center">
-                        <i class="fas fa-eye text-white text-2xl"></i>
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Fitur Unggulan</h2>
+            <div class="feature-grid">
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-eye"></i>
                     </div>
-                    <h3 class="text-xl font-bold mt-4 text-premium-blue">Autofokus Otomatis</h3>
-                    <p class="mt-2 text-gray-600">Secara pintar menyesuaikan fokus kacamata berdasarkan jarak objek yang Anda lihat, menghilangkan kebutuhan untuk mengganti kacamata.</p>
+                    <h3 class="feature-title">Teknologi Autofokus</h3>
+                    <p class="feature-desc">Lensa berteknologi canggih yang secara otomatis menyesuaikan fokus untuk penglihatan jarak dekat, menengah, dan jauh.</p>
                 </div>
                 
-                <!-- Feature 2 -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-xl bg-premium-blue flex items-center justify-center">
-                        <i class="fas fa-sun text-white text-2xl"></i>
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-feather-alt"></i>
                     </div>
-                    <h3 class="text-xl font-bold mt-4 text-premium-blue">Lensa Fotokromik</h3>
-                    <p class="mt-2 text-gray-600">Secara otomatis berubah menjadi kacamata hitam ketika terkena sinar UV, melindungi mata Anda dari cahaya menyilaukan.</p>
+                    <h3 class="feature-title">Ultra Ringan</h3>
+                    <p class="feature-desc">Dibuat dari bahan premium yang sangat ringan untuk kenyamanan seharian tanpa menyebabkan sakit di hidung atau telinga.</p>
                 </div>
                 
-                <!-- Feature 3 -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-xl bg-premium-blue flex items-center justify-center">
-                        <i class="fas fa-feather text-white text-2xl"></i>
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-sun"></i>
                     </div>
-                    <h3 class="text-xl font-bold mt-4 text-premium-blue">Desain Ultra Ringan</h3>
-                    <p class="mt-2 text-gray-600">Dibuat dengan bahan titanium kelas premium, sangat ringan sehingga Anda akan lupa sedang mengenakannya.</p>
+                    <h3 class="feature-title">Photochromic</h3>
+                    <p class="feature-desc">Lensa berubah gelap saat terkena sinar matahari, melindungi mata Anda dari sinar UV berbahaya secara otomatis.</p>
                 </div>
                 
-                <!-- Feature 4 -->
-                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 transform transition-all duration-300 hover:-translate-y-2">
-                    <div class="w-16 h-16 rounded-xl bg-premium-blue flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                <div class="feature-card animate">
+                    <div class="feature-icon">
+                        <i class="fas fa-tint-slash"></i>
                     </div>
-                    <h3 class="text-xl font-bold mt-4 text-premium-blue">Perlindungan UV 100%</h3>
-                    <p class="mt-2 text-gray-600">Blokir 100% sinar UVA dan UVB berbahaya, menjaga mata Anda aman dalam segala kondisi pencahayaan.</p>
+                    <h3 class="feature-title">Anti Reflektif</h3>
+                    <p class="feature-desc">Lapisan anti reflektif mengurangi silau dan mencegah kelelahan mata saat menggunakan perangkat digital atau mengemudi di malam hari.</p>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Benefits Section -->
-    <section id="benefits" class="py-16 bg-premium-blue text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold montserrat">Mengapa <span class="text-premium-highlight">FlexiSight Pro</span>?</h2>
-                <p class="mt-4 text-blue-100">Solusi terbaik untuk kenyamanan penglihatan Anda dalam segala situasi</p>
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Manfaat FlexiSight Pro</h2>
+            
+            <div class="benefit-item animate">
+                <div class="benefit-icon">
+                    <i class="fas fa-glasses"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3>Satu Kacamata untuk Segala Keperluan</h3>
+                    <p>Tidak perlu lagi mengganti-ganti kacamata untuk aktivitas berbeda. FlexiSight Pro memudahkan Anda membaca, bekerja dengan komputer, mengemudi, dan aktivitas sehari-hari hanya dengan satu kacamata.</p>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div class="grid grid-cols-2 gap-6">
-                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl">
-                        <div class="text-4xl text-premium-highlight font-bold montserrat mb-2">5x</div>
-                        <h3 class="font-bold text-lg">Lebih Awet</h3>
-                        <p class="mt-2 text-blue-100">Dibandingkan kacamata biasa berkat material premium</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl">
-                        <div class="text-4xl text-premium-highlight font-bold montserrat mb-2">99%</div>
-                        <h3 class="font-bold text-lg">Kepuasan Pengguna</h3>
-                        <p class="mt-2 text-blue-100">Tingkat kepuasan tertinggi di kelasnya</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl">
-                        <div class="text-4xl text-premium-highlight font-bold montserrat mb-2">24/7</div>
-                        <h3 class="font-bold text-lg">Dukungan Pelanggan</h3>
-                        <p class="mt-2 text-blue-100">Siap membantu Anda kapan saja</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur p-6 rounded-xl">
-                        <div class="text-4xl text-premium-highlight font-bold montserrat mb-2">3-in-1</div>
-                        <h3 class="font-bold text-lg">Fungsi Utama</h3>
-                        <p class="mt-2 text-blue-100">Kacamata baca, kacamata jarak jauh, dan kacamata hitam</p>
+            <div class="benefit-item animate">
+                <div class="benefit-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3>Kurangi Kelelahan Digital</h3>
+                    <p>Lensa khusus dengan filter cahaya biru membantu mengurangi kelelahan mata saat menggunakan smartphone, tablet, atau komputer dalam waktu lama.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item animate">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3>Perlindungan UV Maksimal</h3>
+                    <p>Teknologi photochromic memberikan perlindungan UV 100% secara otomatis saat Anda berada di luar ruangan, menjaga kesehatan mata dalam jangka panjang.</p>
+                </div>
+            </div>
+            
+            <div class="benefit-item animate">
+                <div class="benefit-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="benefit-content">
+                    <h3>Tampilan Premium dan Stylish</h3>
+                    <p>Desain modern dan elegan yang cocok untuk semua gaya, baik untuk acara formal maupun kasual. Tersedia dalam berbagai model untuk pria dan wanita.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Testimoni Pelanggan</h2>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card animate">
+                    <p class="testimonial-text">Sudah mencoba banyak kacamata baca, tapi FlexiSight Pro jauh lebih nyaman. Saya bisa membaca, bekerja dengan laptop, dan mengemudi tanpa perlu ganti kacamata. Ringan dan tidak membuat hidung saya sakit meski dipakai seharian.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">BP</div>
+                        <div>
+                            <div class="author-name">Budi Pratama</div>
+                            <div class="author-location">Jakarta</div>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="space-y-6">
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-premium-highlight flex items-center justify-center">
-                                <i class="fas fa-check text-white"></i>
-                            </div>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-bold">Nyaman Sepanjang Hari</h3>
-                            <p class="mt-1 text-blue-100">Desain ergonomis dengan bantalan hidung yang lembut dan gagang yang dapat disesuaikan, memberikan kenyamanan maksimal meskipun dipakai berjam-jam.</p>
+                <div class="testimonial-card animate">
+                    <p class="testimonial-text">Kacamata multifokus yang sangat praktis! Awalnya ragu karena harganya lebih murah dari yang di optik, tapi kualitasnya sangat bagus. Fitur photochromic benar-benar membantu saat saya keluar ruangan. Sangat merekomendasikan!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">SS</div>
+                        <div>
+                            <div class="author-name">Siti Safitri</div>
+                            <div class="author-location">Bandung</div>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-premium-highlight flex items-center justify-center">
-                                <i class="fas fa-check text-white"></i>
-                            </div>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-bold">Cocok Untuk Semua Aktivitas</h3>
-                            <p class="mt-1 text-blue-100">Dari membaca buku, bekerja di depan komputer, menyetir, hingga berjalan-jalan di siang hari, FlexiSight Pro adalah satu-satunya kacamata yang Anda perlukan.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-premium-highlight flex items-center justify-center">
-                                <i class="fas fa-check text-white"></i>
-                            </div>
-                        </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-bold">Tanpa Perawatan Rumit</h3>
-                            <p class="mt-1 text-blue-100">Tidak perlu cairan pembersih khusus. Lap lensa dengan kain mikrofiber yang disertakan untuk pembersihan cepat dan mudah.</p>
+                </div>
+                
+                <div class="testimonial-card animate">
+                    <p class="testimonial-text">Di umur 45 tahun, mata saya mulai kesulitan fokus untuk jarak dekat. FlexiSight Pro langsung menyelesaikan masalah tanpa ribet ke dokter mata. Frame-nya juga ringan dan nyaman dipakai seharian. Worth it!</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">HA</div>
+                        <div>
+                            <div class="author-name">Hendro Aditya</div>
+                            <div class="author-location">Surabaya</div>
                         </div>
                     </div>
-                    
-                    <div class="flex items-start">
-                        <div class="flex-shrink-0 mt-1">
-                            <div class="w-10 h-10 rounded-full bg-premium-highlight flex items-center justify-center">
-                                <i class="fas fa-check text-white"></i>
-                            </div>
+                </div>
+                
+                <div class="testimonial-card animate">
+                    <p class="testimonial-text">Sebagai guru yang sering membaca dan menggunakan laptop, kacamata ini sangat membantu. Yang paling saya suka adalah kemampuannya berubah gelap saat di luar ruangan. Praktis sekali dan tidak perlu tambahan kacamata hitam.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RD</div>
+                        <div>
+                            <div class="author-name">Ratna Dewi</div>
+                            <div class="author-location">Yogyakarta</div>
                         </div>
-                        <div class="ml-4">
-                            <h3 class="text-lg font-bold">Desain Trendi & Modern</h3>
-                            <p class="mt-1 text-blue-100">Tersedia dalam berbagai warna dan model yang stylish, cocok untuk semua gaya dan kesempatan, dari formal hingga kasual.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8">
-                        <a href="https://mila.orderonline.id/flexisight-pro" class="bg-premium-accent hover:bg-purple-700 px-6 py-3 rounded-md font-bold text-white inline-block">
-                            Pesan Sekarang & Dapatkan Promo
-                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Gallery Section -->
-    <section class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold montserrat text-premium-blue">FlexiSight Pro <span class="text-premium-accent">Dalam Berbagai Gaya</span></h2>
-                <p class="mt-4 text-gray-600">Desain elegan yang cocok untuk semua kesempatan dan semua jenis wajah</p>
-            </div>
-            
-            <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/4d18d0367b793034b1fc5af7d920558b6baf51e8.jpeg" alt="FlexiSight Pro Model Hitam" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Model Black Classic</div>
-                    </div>
-                </div>
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/2b7f939bdb2429753dafeb1a850b9a3a78f8dcd3.jpeg" alt="FlexiSight Pro Model Coklat" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Model Brown Vintage</div>
-                    </div>
-                </div>
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/d37d645986e795c188a19075ba938de042118f8a.jpeg" alt="FlexiSight Pro Model Transparan" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Model Crystal Clear</div>
-                    </div>
-                </div>
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/b1db9c7d6da61d240af825e37b3089aabd1e3fcb.jpeg" alt="FlexiSight Pro Model Blue" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Model Navy Blue</div>
-                    </div>
-                </div>
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/6807aa8c4058e77fd4bfb5baf5dc194a79fdf4f5.jpeg" alt="FlexiSight Pro di Tangan" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Kemasan Premium</div>
-                    </div>
-                </div>
-                <div class="rounded-xl overflow-hidden border-4 border-white shadow-lg">
-                    <img src="https://cdn.hotishop.com/image/7731603e5fc9d8844bd0ba2b814013582aa1d3d7.png" alt="Aksesoris FlexiSight Pro" class="w-full h-64 object-cover">
-                    <div class="p-4 bg-gray-50">
-                        <div class="font-bold text-premium-blue">Kaca Pembesar Berkualitas</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
     <!-- Pricing Section -->
-    <section id="pricing" class="py-16 bg-gradient-to-br from-gray-50 to-gray-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold montserrat text-premium-blue">Pilih <span class="text-premium-accent">Paket Hemat</span> Anda</h2>
-                <p class="mt-4 text-gray-600">Investasikan pada penglihatan Anda dengan harga terbaik di Indonesia</p>
-                
-                <div class="mt-6 inline-flex p-1 bg-gray-200 rounded-xl">
-                    <button class="px-4 py-2 rounded-lg bg-premium-blue text-white font-medium">Paket Normal</button>
-                    <button class="px-4 py-2 rounded-lg font-medium hover:text-premium-blue">Paket Promo (Diskon 30%)</button>
-                </div>
-            </div>
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Pilihan Paket</h2>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <!-- Paket 1 -->
-                <div class="bg-white rounded-2xl shadow-xl border border-premium-blue/20 overflow-hidden">
-                    <div class="p-6 text-center bg-white">
-                        <h3 class="text-xl font-bold text-gray-900">SATU SET</h3>
-                        <div class="mt-4 flex items-center justify-center">
-                            <span class="text-3xl font-bold montserrat text-premium-blue">Rp</span>
-                            <span class="text-5xl font-bold montserrat text-premium-blue">144</span>
-                            <span class="text-xl font-bold montserrat text-premium-blue">.000</span>
-                        </div>
-                        <p class="mt-2 text-gray-500">Harga Normal: <span class="line-through">Rp 210.000</span></p>
-                        
-                        <div class="mt-6 space-y-4 text-left">
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">1 Kacamata FlexiSight Pro</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kotak Penyimpanan Premium</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kain Pembersih Mikrofiber</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Garansi 1 Tahun</span>
-                            </div>
-                        </div>
-                        
-                        <a href="https://mila.orderonline.id/flexisight-pro" class="mt-8 block w-full bg-gray-200 hover:bg-premium-blue text-gray-800 hover:text-white font-medium py-3 px-4 rounded-lg transition-colors">
-                            Pilih Paket Ini
-                        </a>
+            <div class="price-table">
+                <div class="price-card animate">
+                    <div class="price-header">
+                        <h3 class="price-title">Paket Single</h3>
                     </div>
+                    <div class="price-amount">
+                        <div class="price-normal">Rp 210.000</div>
+                        <div class="price-current">140.000</div>
+                    </div>
+                    <p class="price-desc">Hemat 33%</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check-circle"></i> 1 Kacamata FlexiSight Pro</li>
+                        <li><i class="fas fa-check-circle"></i> Tas Kacamata Premium</li>
+                        <li><i class="fas fa-check-circle"></i> Lap Microfiber</li>
+                        <li><i class="fas fa-check-circle"></i> Kartu Garansi</li>
+                    </ul>
+                    <a href="https://mila.orderonline.id/flexisight-pro" class="cta-button">Beli Sekarang</a>
                 </div>
                 
-                <!-- Paket 2 - Recomended -->
-                <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border-2 border-premium-blue transform scale-105">
-                    <div class="relative">
-                        <div class="absolute top-0 right-0 bg-premium-accent text-white px-4 py-1 rounded-bl-lg">
-                            <span class="font-bold">REKOMENDASI</span>
-                        </div>
+                <div class="price-card popular animate">
+                    <div class="popular-tag">Terlaris</div>
+                    <div class="price-header">
+                        <h3 class="price-title">Paket Double</h3>
                     </div>
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900">DUA SET</h3>
-                        <div class="mt-4 flex items-center justify-center">
-                            <span class="text-3xl font-bold montserrat text-premium-blue">Rp</span>
-                            <span class="text-5xl font-bold montserrat text-premium-blue">190</span>
-                            <span class="text-xl font-bold montserrat text-premium-blue">.000</span>
-                        </div>
-                        <p class="mt-2 text-gray-500">Harga Normal: <span class="line-through">Rp 420.000</span></p>
-                        
-                        <div class="mt-6 space-y-4 text-left">
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">2 Kacamata FlexiSight Pro</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kotak Penyimpanan Premium</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kain Pembersih Mikrofiber</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Garansi 2 Tahun</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kaca Pembesar Berkualitas</span>
-                            </div>
-                        </div>
-                        
-                        <a href="https://mila.orderonline.id/flexisight-pro" class="mt-8 block w-full bg-premium-accent hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-all">
-                            Pesan Sekarang <i class="ml-2 fas fa-arrow-right"></i>
-                        </a>
+                    <div class="price-amount">
+                        <div class="price-normal">Rp 420.000</div>
+                        <div class="price-current">190.000</div>
                     </div>
+                    <p class="price-desc">Hemat 55%</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check-circle"></i> 2 Kacamata FlexiSight Pro</li>
+                        <li><i class="fas fa-check-circle"></i> 2 Tas Kacamata Premium</li>
+                        <li><i class="fas fa-check-circle"></i> 2 Lap Microfiber</li>
+                        <li><i class="fas fa-check-circle"></i> Kartu Garansi</li>
+                        <li><i class="fas fa-check-circle"></i> Free Ongkir</li>
+                    </ul>
+                    <a href="https://mila.orderonline.id/flexisight-pro" class="cta-button">Beli Sekarang</a>
                 </div>
                 
-                <!-- Paket 3 -->
-                <div class="bg-white rounded-2xl shadow-xl border border-premium-blue/20 overflow-hidden">
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-gray-900">FAMILY SET</h3>
-                        <div class="mt-4 flex items-center justify-center">
-                            <span class="text-3xl font-bold montserrat text-premium-blue">Rp</span>
-                            <span class="text-5xl font-bold montserrat text-premium-blue">270</span>
-                            <span class="text-xl font-bold montserrat text-premium-blue">.000</span>
-                        </div>
-                        <p class="mt-2 text-gray-500">Harga Normal: <span class="line-through">Rp 630.000</span></p>
-                        
-                        <div class="mt-6 space-y-4 text-left">
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">3 Kacamata FlexiSight Pro</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kotak Penyimpanan Premium</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kain Pembersih Mikrofiber</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Garansi 2 Tahun</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kaca Pembesar Berkualitas</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-check-circle text-green-500"></i>
-                                <span class="ml-2 text-gray-700">Kacamata Cadangan Gratis</span>
-                            </div>
-                        </div>
-                        
-                        <a href="https://mila.orderonline.id/flexisight-pro" class="mt-8 block w-full bg-gray-200 hover:bg-premium-blue text-gray-800 hover:text-white font-medium py-3 px-4 rounded-lg transition-colors">
-                            Pilih Paket Ini
-                        </a>
+                <div class="price-card animate">
+                    <div class="price-header">
+                        <h3 class="price-title">Paket Triple</h3>
                     </div>
+                    <div class="price-amount">
+                        <div class="price-normal">Rp 630.000</div>
+                        <div class="price-current">270.000</div>
+                    </div>
+                    <p class="price-desc">Hemat 57%</p>
+                    <ul class="price-features">
+                        <li><i class="fas fa-check-circle"></i> 3 Kacamata FlexiSight Pro</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Tas Kacamata Premium</li>
+                        <li><i class="fas fa-check-circle"></i> 3 Lap Microfiber</li>
+                        <li><i class="fas fa-check-circle"></i> Kartu Garansi Extended</li>
+                        <li><i class="fas fa-check-circle"></i> Free Ongkir</li>
+                        <li><i class="fas fa-check-circle"></i> Bonus Frame Cadangan</li>
+                    </ul>
+                    <a href="https://mila.orderonline.id/flexisight-pro" class="cta-button">Beli Sekarang</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold montserrat text-premium-blue">Dibuat <span class="text-premium-accent">Dengan</span> Terbukti <span class="text-premium-accent">Memuaskan</span></h2>
-                <p class="mt-4 text-gray-600">Apa kata pengguna FlexiSight Pro di Indonesia</p>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">Promo Spesial Terbatas!</h2>
+            <p class="cta-subtitle">Dapatkan FlexiSight Pro dengan harga spesial hari ini. Penawaran terbatas untuk beberapa hari ke depan!</p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <div id="days">00</div>
+                    <div class="countdown-label">Hari</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="hours">00</div>
+                    <div class="countdown-label">Jam</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="minutes">00</div>
+                    <div class="countdown-label">Menit</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="seconds">00</div>
+                    <div class="countdown-label">Detik</div>
+                </div>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-14 w-14 rounded-full" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Avatar">
-                        </div>
-                        <div class="ml-4">
-                            <div class="font-bold text-premium-blue">Budi Santoso</div>
-                            <div class="text-gray-500">Jakarta</div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">
-                        "Saya sudah pakai FlexiSight Pro selama 3 bulan. Tidak perlu lagi bolak-balik ganti kacamata baca dan kacamata hitam. Praktis sekali! Fotokromiknya bekerja sempurna di bawah terik matahari Indonesia."
-                    </p>
-                    <div class="mt-4 flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-14 w-14 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Avatar">
-                        </div>
-                        <div class="ml-4">
-                            <div class="font-bold text-premium-blue">Dewi Lestari</div>
-                            <div class="text-gray-500">Bandung</div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">
-                        "Fleksibel untuk semua aktivitas saya sebagai guru. Dari mengajar di kelas hingga membaca buku bacaan kecil di rumah. Yang paling saya suka adalah bobotnya yang ringan, sama sekali tidak membuat hidung sakit meski dipakai seharian."
-                    </p>
-                    <div class="mt-4 flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-14 w-14 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Avatar">
-                        </div>
-                        <div class="ml-4">
-                            <div class="font-bold text-premium-blue">Rina Wijaya</div>
-                            <div class="text-gray-500">Surabaya</div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">
-                        "Saya membeli paket 2 untuk saya dan suami. Harganya sangat hemat dibanding beli terpisah. Pelayanannya juga cepat, hanya 2 hari sampai di Surabaya. Kini kerja di depan laptop tidak lagi membuat mata lelah."
-                    </p>
-                    <div class="mt-4 flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 4 -->
-                <div class="bg-gray-50 rounded-2xl p-8">
-                    <div class="flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-14 w-14 rounded-full" src="https://randomuser.me/api/portraits/men/67.jpg" alt="Avatar">
-                        </div>
-                        <div class="ml-4">
-                            <div class="font-bold text-premium-blue">Arif Rahman</div>
-                            <div class="text-gray-500">Medan</div>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">
-                        "Saya sering menyetir jarak jauh dari Medan ke Pekanbaru. FlexiSight Pro sangat membantu karena otomatis berubah menjadi kacamata hitam saat matahari terik. Tanpa perlu mencari dan mengganti kacamata di tengah jalan. Safety first!"
-                    </p>
-                    <div class="mt-4 flex text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
+            <div class="stock-counter">
+                Stok tersisa: <span id="stock-number">27</span> pcs
             </div>
+            
+            <a href="https://mila.orderonline.id/flexisight-pro" class="cta-button">Pesan Sekarang</a>
         </div>
     </section>
-    
-    <!-- CTA Banner -->
-    <section class="relative bg-gradient-to-r from-premium-blue to-premium-dark text-white py-20 overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute top-0 left-0 w-48 h-48 rounded-full bg-premium-highlight"></div>
-            <div class="absolute bottom-0 right-0 w-64 h-64 rounded-full bg-premium-accent"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 text-center relative z-10">
-            <h2 class="text-3xl md:text-4xl font-bold montserrat max-w-3xl mx-auto">Masih <span class="text-premium-highlight">Ragu</span> Dengan <span class="text-premium-accent">FlexiSight Pro</span>?</h2>
-            <p class="mt-4 text-xl max-w-3xl mx-auto">Coba sekarang tanpa risiko! Garansi 100% uang kembali jika tidak puas dalam 30 hari</p>
-            
-            <div class="mt-8">
-                <a href="https://mila.orderonline.id/flexisight-pro" class="shine-effect inline-block bg-premium-accent hover:bg-purple-700 px-8 py-4 rounded-lg font-bold text-lg text-white">
-                    PESAN DAN RASAKAN BEDANYA SEKARANG <i class="ml-2 fas fa-arrow-right"></i>
-                </a>
-            </div>
-            
-            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-6">
-                <div class="flex items-center">
-                    <i class="fas fa-truck text-2xl mr-2"></i>
-                    <span>Gratis Ongkir ke Seluruh Indonesia</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fas fa-shield-alt text-2xl mr-2"></i>
-                    <span>Garansi 100% Uang Kembali</span>
-                </div>
-                <div class="flex items-center">
-                    <i class="fas fa-headset text-2xl mr-2"></i>
-                    <span>Support 24/7</span>
-                </div>
-            </div>
-        </div>
-    </section>
-    
+
     <!-- FAQ Section -->
-    <section class="py-16 bg-gray-50">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="text-3xl font-bold montserrat text-premium-blue text-center mb-12">Pertanyaan <span class="text-premium-accent">Umum</span></h2>
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Umum</h2>
             
-            <div class="space-y-6">
-                <!-- FAQ 1 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="font-medium text-lg">Apakah FlexiSight Pro cocok untuk usia saya?</span>
-                        <i class="fas fa-plus ml-4 text-premium-accent"></i>
-                    </button>
-                    <div class="px-6 pb-6 hidden">
-                        <p class="text-gray-600">
-                            FlexiSight Pro dirancang untuk semua kalangan usia dari 25-65 tahun. Teknologi autofokus yang kami gunakan memungkinkan penyesuaian otomatis tanpa perlu resep dokter.
-                        </p>
+            <div class="faq-item">
+                <div class="faq-question">
+                    Apakah FlexiSight Pro cocok untuk semua usia? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Ya, FlexiSight Pro dirancang untuk digunakan oleh semua usia, terutama bagi mereka yang mengalami kesulitan melihat pada jarak dekat (presbyopia) yang umumnya mulai terjadi di usia 40 tahun ke atas. Namun, kacamata ini juga bermanfaat bagi pengguna yang lebih muda yang sering menggunakan perangkat digital dan ingin melindungi mata dari kelelahan.
                     </div>
                 </div>
-                
-                <!-- FAQ 2 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="font-medium text-lg">Berapa lama waktu pengiriman ke kota saya?</span>
-                        <i class="fas fa-plus ml-4 text-premium-accent"></i>
-                    </button>
-                    <div class="px-6 pb-6 hidden">
-                        <p class="text-gray-600">
-                            Waktu pengiriman rata-rata 1-3 hari kerja untuk Jabodetabek, dan 2-5 hari kerja untuk luar pulau Jawa. Kami akan memberikan nomor resi setelah pengiriman dilakukan.
-                        </p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Bagaimana cara merawat kacamata FlexiSight Pro? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Untuk merawat FlexiSight Pro, bersihkan lensa dengan lap microfiber yang disertakan dalam paket. Hindari menggunakan tisu kertas atau bahan kasar lainnya yang dapat menggores lensa. Simpan kacamata di dalam tas yang disediakan saat tidak digunakan. Hindari meletakkan kacamata dengan lensa menghadap ke bawah dan jangan biarkan terkena panas berlebih seperti di dashboard mobil.
                     </div>
                 </div>
-                
-                <!-- FAQ 3 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="font-medium text-lg">Bagaimana cara merawat kacamata ini?</span>
-                        <i class="fas fa-plus ml-4 text-premium-accent"></i>
-                    </button>
-                    <div class="px-6 pb-6 hidden">
-                        <p class="text-gray-600">
-                            Mudah sekali! Gunakan kain mikrofiber yang disertakan untuk membersihkan lensa. Simpan di tempat penyimpanan ketika tidak digunakan. Hindari menaruh kacamata di tempat yang panas dan lembab.
-                        </p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Apakah kacamata ini tersedia dalam berbagai ukuran? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Ya, FlexiSight Pro tersedia dalam beberapa ukuran frame untuk memastikan kenyamanan bagi berbagai bentuk wajah. Frame standar kami cocok untuk kebanyakan orang dewasa, dan kami juga menyediakan ukuran lebih kecil atau lebih besar sesuai permintaan. Frame kami juga dilengkapi dengan engsel pegas yang dapat menyesuaikan dengan lebar wajah yang berbeda.
                     </div>
                 </div>
-                
-                <!-- FAQ 4 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="font-medium text-lg">Apakah aman untuk melakukan pemesanan secara online?</span>
-                        <i class="fas fa-plus ml-4 text-premium-accent"></i>
-                    </button>
-                    <div class="px-6 pb-6 hidden">
-                        <p class="text-gray-600">
-                            Sangat aman! Pemesanan melalui website resmi kami menggunakan sistem pembayaran terenkripsi. Jaminan uang kembali jika Anda tidak puas dengan produk yang diterima.
-                        </p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Berapa lama pengiriman FlexiSight Pro? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Pengiriman FlexiSight Pro biasanya memakan waktu 2-3 hari kerja untuk wilayah Jawa dan 4-7 hari kerja untuk luar Jawa. Kami menggunakan jasa pengiriman terpercaya dengan nomor resi yang akan dikirimkan segera setelah paket dikirim. Untuk paket Double dan Triple, Anda mendapatkan free ongkir ke seluruh Indonesia.
                     </div>
                 </div>
-                
-                <!-- FAQ 5 -->
-                <div class="bg-white rounded-xl shadow-md overflow-hidden">
-                    <button class="flex justify-between items-center w-full p-6 text-left">
-                        <span class="font-medium text-lg">Bagaimana cara penukaran jika ukuran tidak cocok?</span>
-                        <i class="fas fa-plus ml-4 text-premium-accent"></i>
-                    </button>
-                    <div class="px-6 pb-6 hidden">
-                        <p class="text-gray-600">
-                            Anda dapat menghubungi tim customer service kami dalam waktu 7 hari setelah penerimaan produk. Kami akan menukar dengan ukuran yang sesuai tanpa biaya tambahan.
-                        </p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    Apakah FlexiSight Pro memiliki garansi? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-content">
+                        Ya, setiap pembelian FlexiSight Pro dilengkapi dengan garansi 30 hari untuk kerusakan manufaktur. Jika dalam 30 hari pertama terdapat masalah pada frame atau lensa yang bukan disebabkan oleh kesalahan penggunaan, kami akan mengganti dengan yang baru. Untuk Paket Triple, Anda mendapatkan garansi extended selama 60 hari.
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    
+
     <!-- Footer -->
-    <footer class="bg-premium-dark text-gray-300">
-        <div class="max-w-7xl mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-white font-bold text-xl montserrat">FLEXISIGHT <span class="text-premium-accent">PRO</span></h3>
-                    <p class="mt-4">
-                        Solusi terdepan untuk penglihatan optimal di segala situasi. Teknologi autofokus dan fotokromik premium untuk masyarakat Indonesia.
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Navigasi</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#features" class="hover:text-white">Fitur</a></li>
-                        <li><a href="#benefits" class="hover:text-white">Keunggulan</a></li>
-                        <li><a href="#pricing" class="hover:text-white">Paket Harga</a></li>
-                        <li><a href="#testimonials" class="hover:text-white">Testimoni</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Kontak Kami</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-start">
-                            <i class="fas fa-envelope mt-1 mr-3 text-premium-accent"></i>
-                            <span>cs@flexisightpro.com</span>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fab fa-whatsapp mt-1 mr-3 text-premium-accent"></i>
-                            <span>+62812-3456-7890</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold text-lg mb-4">Pembayaran</h4>
-                    <div class="grid grid-cols-3 gap-2 mb-6">
-                        <div class="bg-gray-200 p-2 rounded flex items-center justify-center">
-                            <i class="fab fa-cc-visa text-blue-900 text-3xl"></i>
-                        </div>
-                        <div class="bg-gray-200 p-2 rounded flex items-center justify-center">
-                            <i class="fab fa-cc-mastercard text-orange-700 text-3xl"></i>
-                        </div>
-                        <div class="bg-gray-200 p-2 rounded flex items-center justify-center">
-                            <i class="fas fa-money-bill-wave text-green-600 text-3xl"></i>
-                        </div>
-                        <div class="bg-gray-200 p-2 rounded flex items-center justify-center">
-                            <i class="fab fa-gopuram text-purple-600 text-3xl"></i>
-                        </div>
-                        <div class="bg-gray-200 p-2 rounded flex items-center justify-center">
-                            <i class="fab fa-cc-paypal text-blue-500 text-3xl"></i>
-                        </div>
-                    </div>
-                </div>
+    <footer>
+        <div class="container">
+            <div class="brand">Flexi<span>Sight</span> Pro</div>
+            
+            <div class="footer-links">
+                <a href="#">Syarat & Ketentuan</a>
+                <a href="#">Kebijakan Privasi</a>
+                <a href="#">Tentang Kami</a>
+                <a href="#">Kontak</a>
             </div>
             
-            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
-                <p>© 2023 FlexiSight Pro. Hak Cipta Dilindungi.</p>
+            <div class="social-icons">
+                <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 FlexiSight Pro. Hak Cipta Dilindungi.
             </div>
         </div>
     </footer>
 
+    <!-- Sticky CTA -->
+    <div class="sticky-cta">
+        <div class="sticky-price">
+            <div class="sticky-normal">Rp 210.000</div>
+            <div class="sticky-current">Rp 140.000</div>
+        </div>
+        <a href="https://mila.orderonline.id/flexisight-pro" class="sticky-button">Beli Sekarang</a>
+    </div>
+
     <script>
-        // Countdown Timer
-        function updateCountdown() {
-            const now = new Date();
-            const target = new Date();
-            target.setHours(18, 0, 0, 0); // Set target to 18:00 today
+        // Animation on Scroll
+        document.addEventListener("DOMContentLoaded", function() {
+            const animateElements = document.querySelectorAll('.animate');
             
-            // If it's already past 18:00, set to next day
-            if (now > target) {
-                target.setDate(target.getDate() + 1);
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            animateElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Image Gallery Modal
+            const galleryImages = document.querySelectorAll('.gallery-img');
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('expandedImg');
+            const closeBtn = document.getElementsByClassName('close')[0];
+            
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    modal.style.display = "block";
+                    modalImg.src = this.src;
+                });
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                modal.style.display = "none";
+            });
+            
+            // FAQ Toggle
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const answer = this.nextElementSibling;
+                    
+                    if (answer.style.maxHeight) {
+                        answer.style.maxHeight = null;
+                        answer.style.padding = "0";
+                    } else {
+                        answer.style.maxHeight = answer.scrollHeight + "px";
+                        answer.style.padding = "1.5rem";
+                    }
+                });
+            });
+            
+            // Countdown Timer
+            const countdownDate = new Date();
+            countdownDate.setDate(countdownDate.getDate() + 3); // 3 days from now
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
             }
             
-            const timeLeft = target - now;
+            setInterval(updateCountdown, 1000);
+            updateCountdown();
             
-            const hours = Math.floor((timeLeft / (1000 * 60 * 60)) % 24);
-            const minutes = Math.floor((timeLeft / (1000 * 60)) % 60);
-            const seconds = Math.floor((timeLeft / 1000) % 60);
+            // Stock Counter
+            let stockCount = 27;
             
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        // Run immediately and every second
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-        
-        // Stock Counter
-        document.addEventListener('DOMContentLoaded', function() {
-            const counter = document.getElementById('stock-counter');
-            let count = 32;
-            
-            setInterval(() => {
-                if(count > 0) {
-                    count--;
-                    counter.textContent = count;
-                    
-                    // Simulate purchase every 8 seconds
-                    if(Math.random() > 0.7) {
-                        const randomDecrease = Math.floor(Math.random() * 2) + 1;
-                        if(count > randomDecrease) count -= randomDecrease;
-                    }
+            function updateStock() {
+                if (Math.random() > 0.7 && stockCount > 1) {
+                    stockCount--;
+                    document.getElementById('stock-number').textContent = stockCount;
                 }
-            }, 8000);
+            }
+            
+            setInterval(updateStock, 15000); // Update every 15 seconds
         });
     </script>
 </body>
